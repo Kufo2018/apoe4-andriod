@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:orientation="vertical">
+
+                    <!--Edit Layout-->
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginTop="10dp">
+
+                       <de.hdodenhof.circleimageview.CircleImageView
+                           android:layout_width="70dp"
+                           android:layout_height="70dp"
+                           android:id="@+id/civ_user_drawer"
+                           android:layout_marginLeft="25dp"
+                           android:src="@drawable/pics"
+                           app:civ_border_color="#fff"
+                           app:civ_border_overlay="true"
+                           app:civ_border_width="2dp"/>
+
+                        <ImageView
+                            android:id="@+id/edit"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="2dp"
+                            android:scaleType="fitCenter"
+                            android:layout_marginLeft="100dp"
+                            app:srcCompat="@drawable/ic_edit" />
+
+                        <TextView
+                            android:id="@+id/editProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="@string/edit"
+                            android:layout_marginLeft="1dp"
+                            android:layout_weight="1"
+                            android:textSize="18sp"
+                            android:gravity="start"
+                            android:textColor="@color/gray"
+                            />
+
+                    </LinearLayout>
+
+
+
+
+                    <TextView
+                        android:id="@+id/tv_username_drawer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="8dp"
+                        android:text="John Doe"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_phone_number_drawer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="Male, 32 Years"
+                        android:textColor="@color/gray"
+                        android:textSize="18sp"
+                        />
+
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="vertical"
+                       android:layout_marginTop="10dp"
+                       android:background="@color/figmaBlue">
+
+                       <LinearLayout
+                           android:id="@+id/texts"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="8dp">
+
+
+                           <TextView
+                               android:id="@+id/textView14"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:layout_height="wrap_content"
+                               android:layout_marginStart="5dp"
+                               android:textSize="17sp"
+                               android:text="Height"
+                               android:textColor="@color/gray"
+                               />
+
+                           <TextView
+                               android:id="@+id/textView17"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:textSize="17sp"
+                               android:layout_height="wrap_content"
+                               android:layout_marginEnd="5dp"
+                               android:text="Weight"
+                               android:textColor="@color/gray"
+                              />
+                       </LinearLayout>
+                       <LinearLayout
+                           android:id="@+id/values"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintTop_toBottomOf="@id/texts"
+                           android:layout_marginTop="2dp"
+                           >
+
+
+                           <TextView
+                               android:id="@+id/height_drawer"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:textColor="@color/gray"
+                               android:layout_height="wrap_content"
+                               android:text="185 cm"
+                               android:textSize="18sp"
+                               app:layout_constraintEnd_toEndOf="@+id/textView14"
+                               app:layout_constraintStart_toStartOf="@+id/textView14"
+                               app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                           <TextView
+                               android:id="@+id/weight_drawer"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:textColor="@color/gray"
+                               android:gravity="center"
+                               android:textSize="18sp"
+                               android:layout_height="wrap_content"
+                               android:text="145 kg"
+                               app:layout_constraintEnd_toEndOf="@+id/textView17"
+                               app:layout_constraintStart_toStartOf="@+id/textView17"
+                               app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                       </LinearLayout>
+
+
+
+
+
+                   </LinearLayout>
+
+
+
+
+
+
+                </LinearLayout>
+
+
+            </FrameLayout>
+
+
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/schedule"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:background="?attr/selectableItemBackground">-->
+
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_task_drawer"-->
+                    <!--android:layout_width="24dp"-->
+                    <!--android:layout_height="24dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="16dp"-->
+                    <!--android:scaleType="fitCenter"-->
+                    <!--app:srcCompat="@drawable/ic_schedule" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="8dp"-->
+                    <!--android:layout_toEndOf="@+id/iv_task_drawer"-->
+                    <!--android:text="Schedule"-->
+                    <!--android:textColor="@color/figmaBlue"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:textStyle="bold" />-->
+            <!--</RelativeLayout>-->
+
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/drawer_manager_click"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="?attr/selectableItemBackground">-->
+
+            <!--<net.steamcrafted.materialiconlib.MaterialIconView-->
+            <!--android:id="@+id/iv_history_drawer"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--app:materialIcon="truck"-->
+            <!--app:materialIconColor="@color/colorAccent" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_toEndOf="@+id/iv_history_drawer"-->
+            <!--android:text="Manage Trucks"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textStyle="bold" />-->
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/drawer_assign_task"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="?attr/selectableItemBackground">-->
+
+            <!--<net.steamcrafted.materialiconlib.MaterialIconView-->
+            <!--android:id="@+id/iv_bonus_drawer"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--app:materialIcon="swap_horizontal"-->
+            <!--app:materialIconColor="@color/colorAccent" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:layout_toEndOf="@+id/iv_bonus_drawer"-->
+            <!--android:text="Manage Rail Partners"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textStyle="bold" />-->
+            <!--</RelativeLayout>-->
+
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/drawer_wallet"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="?attr/selectableItemBackground">-->
+
+            <!--<net.steamcrafted.materialiconlib.MaterialIconView-->
+            <!--android:id="@+id/iv_deduction_drawer"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--app:materialIcon="wallet"-->
+            <!--app:materialIconColor="@color/colorAccent" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_toEndOf="@+id/iv_deduction_drawer"-->
+            <!--android:text="Manage Barge Partners"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textStyle="bold" />-->
+            <!--</RelativeLayout>-->
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/drawer_bookings"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="?attr/selectableItemBackground">-->
+
+            <!--<net.steamcrafted.materialiconlib.MaterialIconView-->
+            <!--android:id="@+id/iv_deduction_draawer"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--app:materialIcon="face_profile"-->
+            <!--app:materialIconColor="@color/colorAccent" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_toEndOf="@+id/iv_deduction_draawer"-->
+            <!--android:text="Manage Bookings"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textStyle="bold" />-->
+            <!--</RelativeLayout>-->
+            <RelativeLayout
+                android:id="@+id/settings"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/iv_deduction_draaweer"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="25dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_settings" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/iv_deduction_draaweer"
+                    android:text="Settings"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/drawer_history"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="?attr/selectableItemBackground">-->
+
+            <!--<net.steamcrafted.materialiconlib.MaterialIconView-->
+            <!--android:id="@+id/iv_staff_drawer"-->
+            <!--android:layout_width="24dp"-->
+            <!--android:layout_height="24dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--app:materialIcon="history"-->
+            <!--app:materialIconColor="@color/colorAccent" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tv_staff"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_toEndOf="@+id/iv_staff_drawer"-->
+            <!--android:text="History"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textStyle="bold" />-->
+            <!--</RelativeLayout>-->
+
+            <RelativeLayout
+                android:id="@+id/drawer_signOut"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:id="@+id/sign_out"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="25dp"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/ic_logout_grey" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_toEndOf="@+id/sign_out"
+                    android:text="SignOut"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

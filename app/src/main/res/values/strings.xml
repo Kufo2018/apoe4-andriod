@@ -1,0 +1,132 @@
+<resources>
+    <string name="app_name">APOE-4</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="title_activity_nav_drawer">NavDrawerActivity</string>
+    <string name="home">Home</string>
+
+    <string name="buttontxt">Getting Started</string>
+    <string name="buttonskip">Skip</string>
+    <string name="buttonback">Back</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="next">Next</string>
+    <string name="logo">logo</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="title_activity_home">Home</string>
+
+
+    <string name="quest1">Are you using the app for yourself?</string>
+    <string name="quest2">Have you gone for Apoe4 test?</string>
+    <string name="quest3">Are you a smoker?</string>
+    <string name="quest4">Any history of High Blood Pressure?</string>
+    <string name="quest5">Are you diabetic?</string>
+
+    <string name="facebook_app_id">672348629886502</string>
+    <string name="fb_login_protocol_scheme">fb672348629886502</string>
+
+    <string-array name="height">
+        <item>Height</item>
+        <item>200cm</item>
+        <item>198cm</item>
+        <item>196cm</item>
+        <item>194cm</item>
+        <item>192cm</item>
+        <item>190cm</item>
+        <item>188cm</item>
+        <item>186cm</item>
+        <item>184cm</item>
+        <item>182cm</item>
+        <item>180cm</item>
+        <item>178cm</item>
+        <item>176cm</item>
+        <item>174cm</item>
+        <item>172cm</item>
+        <item>170cm</item>
+        <item>168cm</item>
+        <item>166cm</item>
+        <item>164cm</item>
+        <item>162cm</item>
+        <item>160cm</item>
+        <item>158cm</item>
+        <item>156cm</item>
+        <item>154cm</item>
+        <item>152cm</item>
+        <item>150cm</item>
+        <item>148cm</item>
+    </string-array>
+
+    <string-array name="weight">
+        <item>Weight</item>
+        <item>20kg</item>
+        <item>25kg</item>
+        <item>30kg</item>
+        <item>35kg</item>
+        <item>40kg</item>
+        <item>45kg</item>
+        <item>50kg</item>
+        <item>55kg</item>
+        <item>60kg</item>
+        <item>65kg</item>
+        <item>70kg</item>
+        <item>75kg</item>
+        <item>80kg</item>
+        <item>85kg</item>
+        <item>90kg</item>
+        <item>95kg</item>
+        <item>100kg</item>
+        <item>105kg</item>
+        <item>110kg</item>
+        <item>115kg</item>
+        <item>120kg</item>
+    </string-array>
+
+
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Alogo">APOE-4</string>
+    <string name="Forgot">Forgot Password</string>
+    <string name="forgotText">Please enter your email so we can help you reset your password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="edit">Edit</string>
+
+    <string name="password">Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="or">Or</string>
+    <string name="register_sign_in">Sign In</string>
+    <string name="register_email">Email</string>
+    <string name="dob_next">Next</string>
+
+    <string name="hours_slept">6hrs</string>
+    <string name="apo_score">9</string>
+    <string name="exercise_calc">2Hrs</string>
+
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="accept_terms_and_conditions">Accept Terms and Conditions</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="full_name">Full Name</string>
+    <string name="change_preferred_language">Change preferred language</string>
+    <string name="language">Language</string>
+    <string name="units">Units</string>
+    <string name="choose_unit_of_measurement">Choose unit of measurement</string>
+
+    <string name="no_more_questions_for_now_check_back_at_noon">No more Questions for now, check back at noon? ^_^</string>
+
+
+</resources>
