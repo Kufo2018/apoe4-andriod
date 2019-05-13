@@ -317,6 +317,17 @@ private ProgressBar loadingQuestions;
     @Override
     public void onFetchQuestion(Question question) {
 //        loadingQuestions.setVisibility(View.GONE);
+        if (questionAnswerChatList.get(questionAnswerChatList.size() - 1).getType() == QuestionAnswerChat.LOADING_TYPE){
+            questionAnswerChatList.remove(questionAnswerChatList.size() - 1);
+            questionsAdapter.notifyDataSetChanged();
+        }
+
+        QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
+        questionAnswerChat.setText(question.getText());
+        questionAnswerChat.setType(QuestionAnswerChat.QUESTION_TYPE);
+
+        questionAnswerChatList.add(questionAnswerChat);
+        questionsAdapter.notifyDataSetChanged();
 
 
     }

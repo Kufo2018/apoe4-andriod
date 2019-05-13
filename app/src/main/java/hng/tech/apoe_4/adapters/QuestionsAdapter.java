@@ -57,11 +57,13 @@ public class QuestionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             case (QuestionAnswerChat.QUESTION_TYPE):{
                 QuestionViewHolder questionViewHolder = (QuestionViewHolder) holder;
                 questionViewHolder.bindTo(questionAnswerChatList.get(position));
+                break;
             }
 
             case (QuestionAnswerChat.ANSWER_TYPE):{
                 AnswerViewHolder answerViewHolder = (AnswerViewHolder) holder;
                 answerViewHolder.bindTo(questionAnswerChatList.get(position));
+                break;
             }
 
             default:{
