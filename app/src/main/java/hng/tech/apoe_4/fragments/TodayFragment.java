@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -69,6 +70,12 @@ private ProgressBar loadingQuestions;
 
     @BindView(R.id.temp)
     TextView tempText;
+
+    @BindView(R.id.answersRecyclerView)
+    RecyclerView answersRecyclerView;
+
+    @BindView(R.id.questionsRecyclerView)
+    RecyclerView questionsRecyclerView;
 
     private String questionId;
 
