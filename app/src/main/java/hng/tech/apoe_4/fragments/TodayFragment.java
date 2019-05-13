@@ -326,11 +326,7 @@ private ProgressBar loadingQuestions;
     @Override
     public void onFetchQuestion(Question question) {
 //        loadingQuestions.setVisibility(View.GONE);
-        if (questionAnswerChatList.get(questionAnswerChatList.size() - 1).getType() == QuestionAnswerChat.LOADING_TYPE){
-            questionAnswerChatList.remove(questionAnswerChatList.size() - 1);
-            questionsAdapter.notifyDataSetChanged();
-        }
-
+        removeLoadingView();
         QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
         questionAnswerChat.setText(question.getText());
         questionAnswerChat.setType(QuestionAnswerChat.QUESTION_TYPE);
@@ -348,7 +344,7 @@ private ProgressBar loadingQuestions;
 
     @Override
     public void noMoreQuestions(String msg) {
-
+        removeLoadingView();
 
     }
 
@@ -359,7 +355,9 @@ private ProgressBar loadingQuestions;
                 options.get(i).setChosen(2);
             }
         }
+        questionAnswerChatList.add(new QuestionAnswerChat(options.get(position).getAnswerText(), "", QuestionAnswerChat.ANSWER_TYPE));
         optionsAdapter.notifyDataSetChanged();
+        addLoadingView();
     }
 
     @Override
@@ -375,5 +373,17 @@ private ProgressBar loadingQuestions;
     @Override
     public void toastError(String msg) {
 
+    }
+
+    private void removeLoadingView(){
+        if (questionAnswerChatList.get(questionAnswerChatList.size() - 1).getType() == QuestionAnswerChat.LOADING_TYPE){
+            questionAnswerChatList.remove(questionAnswerChatList.size() - 1);
+            questionsAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void addLoadingView(){
+        questionAnswerChatList.add(new QuestionAnswerChat(QuestionAnswerChat.LOADING_TYPE));
+        questionsAdapter.notifyDataSetChanged();
     }
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import java.util.List;
 
@@ -23,6 +27,8 @@ import hng.tech.apoe_4.models.QuestionAnswerChat;
 public class QuestionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private List<QuestionAnswerChat> questionAnswerChatList;
+
+    private int lastPosition = -1;
 
     public QuestionsAdapter(Context context, List<QuestionAnswerChat> questionAnswerChatList) {
         this.context = context;
@@ -57,19 +63,24 @@ public class QuestionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             case (QuestionAnswerChat.QUESTION_TYPE):{
                 QuestionViewHolder questionViewHolder = (QuestionViewHolder) holder;
                 questionViewHolder.bindTo(questionAnswerChatList.get(position));
+                setAnimation(questionViewHolder.itemView, position);
                 break;
             }
 
             case (QuestionAnswerChat.ANSWER_TYPE):{
                 AnswerViewHolder answerViewHolder = (AnswerViewHolder) holder;
                 answerViewHolder.bindTo(questionAnswerChatList.get(position));
+                setAnimation(answerViewHolder.itemView, position);
                 break;
             }
 
             default:{
                 LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
                 loadingViewHolder.bindTo();
+                setAnimation(loadingViewHolder.itemView, position);
+                break;
             }
+
         }
     }
 
@@ -124,6 +135,22 @@ public class QuestionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             animationView.setAnimation("animation_loading.json");
             animationView.setRepeatCount(LottieDrawable.INFINITE);
             animationView.playAnimation();
+        }
+    }
+
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+                    YoYo.with(Techniques.FadeIn)
+                .duration(300)
+//                .repeat(5)
+                .playOn(viewToAnimate);
+
+//            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+//            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
         }
     }
 }
