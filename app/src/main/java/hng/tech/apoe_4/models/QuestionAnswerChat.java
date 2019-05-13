@@ -3,6 +3,7 @@ package hng.tech.apoe_4.models;
 public class QuestionAnswerChat {
     public static final int QUESTION_TYPE = 0;
     public static final int ANSWER_TYPE = 1;
+    public static final int LOADING_TYPE = 2;
     private String text, time;
     private int type;
 
@@ -13,6 +14,10 @@ public class QuestionAnswerChat {
     }
 
     public QuestionAnswerChat() {
+    }
+
+    public QuestionAnswerChat(int type) {
+        this.type = type;
     }
 
     public String getText() {

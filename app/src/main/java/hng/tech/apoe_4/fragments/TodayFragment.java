@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -23,13 +24,17 @@ import com.airbnb.lottie.LottieDrawable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.adapters.QuestionsAdapter;
 import hng.tech.apoe_4.models.Question;
+import hng.tech.apoe_4.models.QuestionAnswerChat;
 import hng.tech.apoe_4.presenters.TodayPresenter;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
@@ -85,9 +90,8 @@ private ProgressBar loadingQuestions;
 
     private TodayPresenter todayPresenter;
 
-
-
-
+    private List<QuestionAnswerChat> questionAnswerChatList;
+    private QuestionsAdapter questionsAdapter;
 
 
     private float from = (float)10;
@@ -156,7 +160,13 @@ private ProgressBar loadingQuestions;
 
         genInflater = inflater;
 
+        questionAnswerChatList = new ArrayList<>();
+        questionAnswerChatList.add(new QuestionAnswerChat(QuestionAnswerChat.LOADING_TYPE));
 
+        questionsAdapter = new QuestionsAdapter(getContext(), questionAnswerChatList);
+        questionsRecyclerView.setHasFixedSize(true);
+        questionsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        questionsRecyclerView.setAdapter(questionsAdapter);
 //        submit_button = view.findViewById(R.id.submit_button);
 
         Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
