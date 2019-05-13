@@ -34,6 +34,7 @@ import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.adapters.OptionsAdapter;
 import hng.tech.apoe_4.adapters.QuestionsAdapter;
+import hng.tech.apoe_4.models.AnswerState;
 import hng.tech.apoe_4.models.Question;
 import hng.tech.apoe_4.models.QuestionAnswerChat;
 import hng.tech.apoe_4.presenters.TodayPresenter;
@@ -92,7 +93,7 @@ private ProgressBar loadingQuestions;
     private TodayPresenter todayPresenter;
 
     private List<QuestionAnswerChat> questionAnswerChatList;
-    private  List<String> options;
+    private  List<AnswerState> options;
     private QuestionsAdapter questionsAdapter;
     private OptionsAdapter optionsAdapter;
 
@@ -168,7 +169,7 @@ private ProgressBar loadingQuestions;
         questionAnswerChatList.add(new QuestionAnswerChat(QuestionAnswerChat.LOADING_TYPE));
 
         questionsAdapter = new QuestionsAdapter(getContext(), questionAnswerChatList);
-        optionsAdapter = new OptionsAdapter(getContext(), options);
+        optionsAdapter = new OptionsAdapter(getContext(), this,  options);
         questionsRecyclerView.setHasFixedSize(true);
         questionsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         questionsRecyclerView.setAdapter(questionsAdapter);
@@ -337,7 +338,9 @@ private ProgressBar loadingQuestions;
         questionAnswerChatList.add(questionAnswerChat);
         questionsAdapter.notifyDataSetChanged();
 
-        options.addAll(question.getOptions());
+        for(String option : question.getOptions()){
+            options.add(new AnswerState(option, 0));
+        }
         optionsAdapter.notifyDataSetChanged();
 
 
@@ -347,6 +350,16 @@ private ProgressBar loadingQuestions;
     public void noMoreQuestions(String msg) {
 
 
+    }
+
+    @Override
+    public void onAnswerSelected(int position) {
+        for (int i = 0; i < options.size(); i++) {
+            if (i != position){
+                options.get(i).setChosen(2);
+            }
+        }
+        optionsAdapter.notifyDataSetChanged();
     }
 
     @Override

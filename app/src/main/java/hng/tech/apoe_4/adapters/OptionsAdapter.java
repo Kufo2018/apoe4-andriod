@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,17 +14,21 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
-import hng.tech.apoe_4.models.QuestionAnswerChat;
+import hng.tech.apoe_4.models.AnswerState;
+import hng.tech.apoe_4.views.TodayView;
 
 public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.OptionViewHolder>{
 
     private Context context;
-    private List<String> options;
+    TodayView todayView;
+    private List<AnswerState> options;
 
-    public OptionsAdapter(Context context, List<String> options) {
+    public OptionsAdapter(Context context, TodayView todayView, List<AnswerState> options) {
         this.context = context;
+        this.todayView = todayView;
         this.options = options;
     }
+
 
     @NonNull
     @Override
@@ -54,9 +57,18 @@ public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.OptionVi
             ButterKnife.bind(this, itemView);
         }
 
-        public void bindTo(String option){
-            answerText.setText(option);
-            answerText.setOnClickListener(v -> answerText.setSelected(true));
+        public void bindTo(AnswerState option){
+            answerText.setText(option.getAnswerText());
+            answerText.setOnClickListener(v -> {
+                answerText.setSelected(true);
+                todayView.onAnswerSelected(getAdapterPosition());
+
+            });
+            if (option.getChosen() != 2) {
+                answerText.setEnabled(true);
+            } else {
+                answerText.setEnabled(false);
+            }
         }
 
     }
