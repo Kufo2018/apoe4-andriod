@@ -352,6 +352,7 @@ private ProgressBar loadingQuestions;
     public void noMoreQuestions(String msg) {
         removeLoadingView();
         questionAnswerChatList.add(new QuestionAnswerChat("No more questions for now ^_^...", "", QuestionAnswerChat.QUESTION_TYPE));
+        answersRecyclerView.setVisibility(View.GONE);
 
     }
 
