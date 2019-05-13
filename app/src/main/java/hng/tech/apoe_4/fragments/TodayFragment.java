@@ -18,6 +18,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieDrawable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -299,12 +301,12 @@ private ProgressBar loadingQuestions;
 
     @Override
     public void beginQuestionFetch() {
-        loadingQuestions.setVisibility(View.VISIBLE);
+//        loadingQuestions.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onFetchQuestion(Question question) {
-        loadingQuestions.setVisibility(View.GONE);
+//        loadingQuestions.setVisibility(View.GONE);
 
 
     }
