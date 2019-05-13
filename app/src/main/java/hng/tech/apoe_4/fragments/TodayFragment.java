@@ -8,23 +8,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
@@ -61,8 +58,8 @@ public class TodayFragment extends Fragment implements TodayView {
     @BindView(R.id.sleepProgress)
     ProgressBar sleepProgress;
 
-    @BindView(R.id.questions_view)
-    LinearLayout questionsLayout;
+//    @BindView(R.id.questions_view)
+//    LinearLayout questionsLayout;
 
 //    @BindView(R.id.loadingQuestions)
 private ProgressBar loadingQuestions;
@@ -128,13 +125,13 @@ private ProgressBar loadingQuestions;
 
 
     private View.OnClickListener buttonTap = v -> {
-        YoYo.with(Techniques.SlideOutRight)
-                .duration(700)
+//        YoYo.with(Techniques.SlideOutRight)
+//                .duration(700)
 //                .repeat(5)
-                .playOn(questionsLayout);
+//                .playOn(questionsLayout);
 
-        Button selected = (Button) v;
-       sendAnswer(selected.getText().toString());
+//        Button selected = (Button) v;
+//       sendAnswer(selected.getText().toString());
     };
 
     private void sendAnswer(String answer){
@@ -158,10 +155,10 @@ private ProgressBar loadingQuestions;
         todayPresenter = new TodayPresenter(getContext(), this);
 
 
-        questionsLayout.removeAllViews();
-        View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
-        loadingQuestions = questionView.findViewById(R.id.loadingQuestions);
-        noMoreQuestions = questionView.findViewById(R.id.no_more_questions_tv);
+//        questionsLayout.removeAllViews();
+//        View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
+//        loadingQuestions = questionView.findViewById(R.id.loadingQuestions);
+//        noMoreQuestions = questionView.findViewById(R.id.no_more_questions_tv);
 
         todayPresenter.fetchQuestion();
 //        questionsLayout.addView(questionView);
@@ -251,25 +248,7 @@ private ProgressBar loadingQuestions;
 
     private void showNextQuestion(@NonNull LayoutInflater inflater, Question question) {
         questionId = question.getId();
-        questionsLayout.removeAllViews();
-        View questionView = inflater.inflate(R.layout.daily_questions_layout, questionsLayout);
-        TextView title = questionView.findViewById(R.id.question_title);
-        Button one = questionView.findViewById(R.id.answer1);
-        Button two = questionView.findViewById(R.id.answer2);
-        Button three = questionView.findViewById(R.id.answer3);
-        Button four = questionView.findViewById(R.id.answer4);
-
-        one.setOnClickListener(buttonTap);
-        two.setOnClickListener(buttonTap);
-        three.setOnClickListener(buttonTap);
-        four.setOnClickListener(buttonTap);
-
-        title.setText(question.getText());
-        one.setText(question.getOptions().get(0));
-        two.setText(question.getOptions().get(1));
-        three.setText(question.getOptions().get(2));
-        if (question.getOptions().size() > 3)
-            four.setText(question.getOptions().get(3));
+//        questionsLayout.removeAllViews();
 
     }
 
@@ -319,27 +298,13 @@ private ProgressBar loadingQuestions;
     @Override
     public void onFetchQuestion(Question question) {
         loadingQuestions.setVisibility(View.GONE);
-        YoYo.with(Techniques.SlideInLeft)
-                .duration(700)
-                .playOn(questionsLayout);
-        showNextQuestion(genInflater, question);
 
-//        showNextQuestion(genInflater, question);
 
     }
 
     @Override
     public void noMoreQuestions(String msg) {
-        questionsLayout.removeAllViews();
-        View view  = genInflater.inflate(R.layout.no_more_questions, questionsLayout);
 
-        loadingQuestions.setVisibility(View.GONE);
-        YoYo.with(Techniques.SlideInLeft)
-                .duration(700)
-                .playOn(questionsLayout);
-
-        noMoreQuestions = view.findViewById(R.id.no_more_questions_tv) ;
-        noMoreQuestions.setText(msg);
 
     }
 
