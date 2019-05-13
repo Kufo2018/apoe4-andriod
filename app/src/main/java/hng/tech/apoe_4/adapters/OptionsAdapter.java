@@ -41,6 +41,8 @@ public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.OptionVi
     @Override
     public void onBindViewHolder(@NonNull OptionViewHolder holder, int position) {
         holder.bindTo(options.get(position));
+//        holder.answerText.setSelected(false);
+//        holder.answerText.setTextColor(context.getResources().getColor(R.color.black));
     }
 
     @Override
@@ -61,14 +63,22 @@ public class OptionsAdapter extends RecyclerView.Adapter<OptionsAdapter.OptionVi
             answerText.setText(option.getAnswerText());
             answerText.setOnClickListener(v -> {
                 answerText.setSelected(true);
-                todayView.onAnswerSelected(getAdapterPosition());
+                answerText.setTextColor(context.getResources().getColor(R.color.white));
+                todayView.onAnswerSelected(getAdapterPosition(), option.getAnswerText());
 
             });
-            if (option.getChosen() != 2) {
-                answerText.setEnabled(true);
-            } else {
+            if (option.getChosen() == 2) {
                 answerText.setEnabled(false);
+                answerText.setTextColor(context.getResources().getColor(R.color.white));
+//                answerText.setSelected(false);
+            } else if (option.getChosen() == 0){
+                answerText.setEnabled(true);
+                answerText.setSelected(false);
+                answerText.setTextColor(context.getResources().getColor(R.color.black));
+
             }
+            else answerText.setSelected(true);
+
         }
 
     }

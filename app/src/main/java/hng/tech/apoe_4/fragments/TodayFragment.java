@@ -178,7 +178,7 @@ private ProgressBar loadingQuestions;
         answersRecyclerView.setAdapter(optionsAdapter);
 //        submit_button = view.findViewById(R.id.submit_button);
 
-        Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
+//        Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
 
         todayPresenter = new TodayPresenter(getContext(), this);
 
@@ -334,6 +334,11 @@ private ProgressBar loadingQuestions;
         questionAnswerChatList.add(questionAnswerChat);
         questionsAdapter.notifyDataSetChanged();
 
+        questionsRecyclerView.scrollToPosition(questionAnswerChatList.size() - 1);
+
+        options.clear();
+        optionsAdapter.notifyDataSetChanged();
+
         for(String option : question.getOptions()){
             options.add(new AnswerState(option, 0));
         }
@@ -345,19 +350,24 @@ private ProgressBar loadingQuestions;
     @Override
     public void noMoreQuestions(String msg) {
         removeLoadingView();
+        questionAnswerChatList.add(new QuestionAnswerChat("No more questions for now ^_^...", "", QuestionAnswerChat.QUESTION_TYPE));
 
     }
 
     @Override
-    public void onAnswerSelected(int position) {
+    public void onAnswerSelected(int position, String answer) {
         for (int i = 0; i < options.size(); i++) {
             if (i != position){
                 options.get(i).setChosen(2);
-            }
+            } else options.get(i).setChosen(1);
         }
         questionAnswerChatList.add(new QuestionAnswerChat(options.get(position).getAnswerText(), "", QuestionAnswerChat.ANSWER_TYPE));
         optionsAdapter.notifyDataSetChanged();
         addLoadingView();
+        questionsRecyclerView.scrollToPosition(questionAnswerChatList.size() - 1);
+
+
+        sendAnswer(answer);
     }
 
     @Override
