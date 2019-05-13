@@ -1,8 +1,8 @@
 package hng.tech.apoe_4.models;
 
 public class QuestionAnswerChat {
-    private static final int QUESTION_TYPE = 0;
-    private static final int ANSWER_TYPE = 1;
+    public static final int QUESTION_TYPE = 0;
+    public static final int ANSWER_TYPE = 1;
     private String text, time;
     private int type;
 
