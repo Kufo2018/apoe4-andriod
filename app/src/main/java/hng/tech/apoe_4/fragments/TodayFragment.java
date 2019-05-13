@@ -326,6 +326,7 @@ private ProgressBar loadingQuestions;
     @Override
     public void onFetchQuestion(Question question) {
 //        loadingQuestions.setVisibility(View.GONE);
+        questionId = question.getId();
         removeLoadingView();
         QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
         questionAnswerChat.setText(question.getText());
