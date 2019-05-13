@@ -32,6 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.adapters.OptionsAdapter;
 import hng.tech.apoe_4.adapters.QuestionsAdapter;
 import hng.tech.apoe_4.models.Question;
 import hng.tech.apoe_4.models.QuestionAnswerChat;
@@ -91,7 +92,9 @@ private ProgressBar loadingQuestions;
     private TodayPresenter todayPresenter;
 
     private List<QuestionAnswerChat> questionAnswerChatList;
+    private  List<String> options;
     private QuestionsAdapter questionsAdapter;
+    private OptionsAdapter optionsAdapter;
 
 
     private float from = (float)10;
@@ -161,12 +164,17 @@ private ProgressBar loadingQuestions;
         genInflater = inflater;
 
         questionAnswerChatList = new ArrayList<>();
+        options = new ArrayList<>();
         questionAnswerChatList.add(new QuestionAnswerChat(QuestionAnswerChat.LOADING_TYPE));
 
         questionsAdapter = new QuestionsAdapter(getContext(), questionAnswerChatList);
+        optionsAdapter = new OptionsAdapter(getContext(), options);
         questionsRecyclerView.setHasFixedSize(true);
         questionsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         questionsRecyclerView.setAdapter(questionsAdapter);
+
+        answersRecyclerView.setHasFixedSize(true);
+        answersRecyclerView.setAdapter(optionsAdapter);
 //        submit_button = view.findViewById(R.id.submit_button);
 
         Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
@@ -328,6 +336,9 @@ private ProgressBar loadingQuestions;
 
         questionAnswerChatList.add(questionAnswerChat);
         questionsAdapter.notifyDataSetChanged();
+
+        options.addAll(question.getOptions());
+        optionsAdapter.notifyDataSetChanged();
 
 
     }
