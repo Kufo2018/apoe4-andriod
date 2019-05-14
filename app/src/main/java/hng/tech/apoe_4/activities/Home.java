@@ -46,6 +46,8 @@ import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
 import hng.tech.apoe_4.fragments.TodayFragment;
+import hng.tech.apoe_4.retrofit.ApiInterface;
+import hng.tech.apoe_4.retrofit.responses.Count;
 import hng.tech.apoe_4.retrofit.responses.DailyResponse;
 import hng.tech.apoe_4.retrofit.responses.DailyResponseData;
 import hng.tech.apoe_4.retrofit.responses.dailyQuestions;
@@ -54,6 +56,8 @@ import im.delight.android.location.SimpleLocation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Home extends AppCompatActivity {
 
@@ -62,6 +66,7 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.navigationView)
     BottomNavigationView bottomNavigationView;
     private int count = 0;
+    ApiInterface apiInterface;
 
 //    @BindView(R.id.logout)
 //    ImageView logoutImageView;
@@ -104,6 +109,14 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.tv_phone_number_drawer)
     TextView infoDrawer;
 
+    @BindView(R.id.imageView5)
+    RelativeLayout notif;
+
+    @BindView(R.id.count)
+    TextView countt;
+
+
+
     static String gender,height;
 
     private static final String TAG = Home.class.getSimpleName();
@@ -126,6 +139,9 @@ public class Home extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
         locations = new SimpleLocation(this);
         ButterKnife.bind(this);
+
+        //load the notification count
+        getNotificationCount();
 
 
         if (!Prefs.getBoolean("fblog", false)){
@@ -179,6 +195,11 @@ public class Home extends AppCompatActivity {
                 startActivity(new Intent(this, EditProfile.class));
                 drawer.closeDrawer(GravityCompat.START);
         });
+
+        notif.setOnClickListener(view -> {
+            startActivity(new Intent(Home.this, NotificationActivity.class));
+        });
+
 
 
 //        schedule.setOnClickListener(v -> {
@@ -512,6 +533,36 @@ public class Home extends AppCompatActivity {
                 });
 
     }
+
+    //logic for getting
+
+    private void getNotificationCount(){
+        getRetrofit("https://chimdike.000webhostapp.com/");
+
+        Call<Count> call = apiInterface.count();
+        call.enqueue(new Callback<Count>() {
+            @Override
+            public void onResponse(Call<Count> call, Response<Count> response) {
+                String count2 = response.body().getCount();
+                countt.setText(count2);
+
+            }
+
+            @Override
+            public void onFailure(Call<Count> call, Throwable t) {
+
+            }
+        });
+    }
+    private void getRetrofit(String url1){
+        //Build Retrofit and connect to interface
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url1)
+                .addConverterFactory(GsonConverterFactory.create()) //Here we are using the GsonConverterFactory to directly convert json data to object
+                .build();
+        apiInterface = retrofit.create(ApiInterface.class);
+    }
+
 
 
 }

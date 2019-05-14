@@ -1,8 +1,12 @@
 package hng.tech.apoe_4.retrofit;
 
+import java.util.List;
+
 import hng.tech.apoe_4.retrofit.responses.AnswerResponse;
 import hng.tech.apoe_4.retrofit.responses.AuthResponse;
+import hng.tech.apoe_4.retrofit.responses.Count;
 import hng.tech.apoe_4.retrofit.responses.DailyResponse;
+import hng.tech.apoe_4.retrofit.responses.Notif;
 import hng.tech.apoe_4.retrofit.responses.QuestionServed;
 import hng.tech.apoe_4.retrofit.responses.User;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
@@ -46,4 +50,10 @@ public interface ApiInterface {
     @POST("answers")
     @FormUrlEncoded
     Call<AnswerResponse> sendAnswer(@Header ("Authorization") String header, @Field("question") String questionId, @Field("text") String answerSelected);
+
+    @GET("notiget.php")
+    Call<List<Notif>>notifications();
+
+    @GET("count.php")
+    Call<Count>count();
 }
