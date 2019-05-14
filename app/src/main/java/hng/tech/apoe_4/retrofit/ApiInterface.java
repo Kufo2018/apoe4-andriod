@@ -43,7 +43,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     Call<QuestionServed> getQuestion(@Header ("Authorization") String header,@Field("type") String type);
 
-    @POST("answers/")
+    @POST("answers")
     @FormUrlEncoded
     Call<AnswerResponse> sendAnswer(@Header ("Authorization") String header, @Field("question") String questionId, @Field("text") String answerSelected);
 }
