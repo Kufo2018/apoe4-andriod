@@ -13,5 +13,7 @@
         android:maxLines="3"
         android:layout_height="wrap_content"
         android:background="@drawable/question_transparent_background"
-        android:text="How is your day going?" />
+        android:text="How is your day going?"
+        android:fontFamily="@font/poppins_light"
+        android:textColor="@color/black"/>
 </LinearLayout>

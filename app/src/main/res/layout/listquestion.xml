@@ -9,7 +9,9 @@
         android:id="@+id/que"
         android:text="@string/quest3"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="20sp"
+        android:fontFamily="@font/poppins_light"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +19,7 @@
         android:orientation="horizontal"
         android:weightSum="5"
         android:gravity="center"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginTop="10dp">
     <Button
         android:layout_width="0dp"
@@ -27,6 +30,7 @@
         android:text="Yes"
         android:textColor="@color/figmaBlue"
         android:textSize="18sp"
+        android:fontFamily="@font/poppins_light"
         android:padding="4dp"
         android:textAllCaps="false"/>
         <Button
@@ -38,6 +42,7 @@
             android:text="Yes"
             android:textColor="@color/figmaBlue"
             android:textSize="18sp"
+            android:fontFamily="@font/poppins_light"
             android:padding="4dp"
             android:textAllCaps="false"/>
 
@@ -50,6 +55,7 @@
         android:text="No"
         android:textColor="@color/figmaBlue"
         android:textSize="18sp"
+        android:fontFamily="@font/poppins_light"
         android:padding="4dp"
         android:textAllCaps="false"/>
     </LinearLayout>
@@ -61,6 +67,8 @@
         android:text="@string/quest4"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginTop="16dp"
         />
     <LinearLayout
@@ -79,6 +87,7 @@
             android:text="Yes"
             android:textColor="@color/figmaBlue"
             android:textSize="18sp"
+            android:fontFamily="@font/poppins_light"
             android:padding="4dp"
             android:textAllCaps="false"/>
         <Button
@@ -90,6 +99,7 @@
             android:text="Yes"
             android:textColor="@color/figmaBlue"
             android:textSize="18sp"
+            android:fontFamily="@font/poppins_light"
             android:padding="4dp"
             android:textAllCaps="false"/>
 
@@ -102,6 +112,7 @@
             android:text="No"
             android:textColor="@color/figmaBlue"
             android:textSize="18sp"
+            android:fontFamily="@font/poppins_light"
             android:padding="4dp"
             android:textAllCaps="false"/>
     </LinearLayout>
@@ -113,6 +124,8 @@
         android:text="@string/quest5"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_light"
         android:layout_marginTop="16dp"
         />
     <LinearLayout
@@ -131,6 +144,7 @@
             android:text="Yes"
             android:textColor="@color/figmaBlue"
             android:textSize="18sp"
+            android:fontFamily="@font/poppins_light"
             android:padding="4dp"
             android:textAllCaps="false"/>
         <Button
@@ -142,6 +156,7 @@
             android:text="Yes"
             android:textColor="@color/figmaBlue"
             android:textSize="18sp"
+            android:fontFamily="@font/poppins_light"
             android:padding="4dp"
             android:textAllCaps="false"/>
 
@@ -154,6 +169,7 @@
             android:text="No"
             android:textColor="@color/figmaBlue"
             android:textSize="18sp"
+            android:fontFamily="@font/poppins_light"
             android:padding="4dp"
             android:textAllCaps="false"/>
     </LinearLayout>

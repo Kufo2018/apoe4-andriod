@@ -25,7 +25,7 @@
         android:textColor="#676767"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="0dp"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="@font/poppins_light"
         android:text="How are you today?"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
