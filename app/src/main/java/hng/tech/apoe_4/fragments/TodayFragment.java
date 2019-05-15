@@ -8,28 +8,35 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieDrawable;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.adapters.OptionsAdapter;
+import hng.tech.apoe_4.adapters.QuestionsAdapter;
+import hng.tech.apoe_4.models.AnswerState;
 import hng.tech.apoe_4.models.Question;
+import hng.tech.apoe_4.models.QuestionAnswerChat;
 import hng.tech.apoe_4.presenters.TodayPresenter;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
@@ -61,8 +68,8 @@ public class TodayFragment extends Fragment implements TodayView {
     @BindView(R.id.sleepProgress)
     ProgressBar sleepProgress;
 
-    @BindView(R.id.questions_view)
-    LinearLayout questionsLayout;
+//    @BindView(R.id.questions_view)
+//    LinearLayout questionsLayout;
 
 //    @BindView(R.id.loadingQuestions)
 private ProgressBar loadingQuestions;
@@ -73,15 +80,22 @@ private ProgressBar loadingQuestions;
     @BindView(R.id.temp)
     TextView tempText;
 
+    @BindView(R.id.answersRecyclerView)
+    RecyclerView answersRecyclerView;
+
+    @BindView(R.id.questionsRecyclerView)
+    RecyclerView questionsRecyclerView;
+
     private String questionId;
 
     private LayoutInflater genInflater;
 
     private TodayPresenter todayPresenter;
 
-
-
-
+    private List<QuestionAnswerChat> questionAnswerChatList;
+    private  List<AnswerState> options;
+    private QuestionsAdapter questionsAdapter;
+    private OptionsAdapter optionsAdapter;
 
 
     private float from = (float)10;
@@ -128,13 +142,13 @@ private ProgressBar loadingQuestions;
 
 
     private View.OnClickListener buttonTap = v -> {
-        YoYo.with(Techniques.SlideOutRight)
-                .duration(700)
+//        YoYo.with(Techniques.SlideOutRight)
+//                .duration(700)
 //                .repeat(5)
-                .playOn(questionsLayout);
+//                .playOn(questionsLayout);
 
-        Button selected = (Button) v;
-       sendAnswer(selected.getText().toString());
+//        Button selected = (Button) v;
+//       sendAnswer(selected.getText().toString());
     };
 
     private void sendAnswer(String answer){
@@ -150,18 +164,29 @@ private ProgressBar loadingQuestions;
 
         genInflater = inflater;
 
+        questionAnswerChatList = new ArrayList<>();
+        options = new ArrayList<>();
+        questionAnswerChatList.add(new QuestionAnswerChat(QuestionAnswerChat.LOADING_TYPE));
 
+        questionsAdapter = new QuestionsAdapter(getContext(), questionAnswerChatList);
+        optionsAdapter = new OptionsAdapter(getContext(), this,  options);
+        questionsRecyclerView.setHasFixedSize(true);
+        questionsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        questionsRecyclerView.setAdapter(questionsAdapter);
+
+        answersRecyclerView.setHasFixedSize(true);
+        answersRecyclerView.setAdapter(optionsAdapter);
 //        submit_button = view.findViewById(R.id.submit_button);
 
-        Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
+//        Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
 
         todayPresenter = new TodayPresenter(getContext(), this);
 
 
-        questionsLayout.removeAllViews();
-        View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
-        loadingQuestions = questionView.findViewById(R.id.loadingQuestions);
-        noMoreQuestions = questionView.findViewById(R.id.no_more_questions_tv);
+//        questionsLayout.removeAllViews();
+//        View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
+//        loadingQuestions = questionView.findViewById(R.id.loadingQuestions);
+//        noMoreQuestions = questionView.findViewById(R.id.no_more_questions_tv);
 
         todayPresenter.fetchQuestion();
 //        questionsLayout.addView(questionView);
@@ -251,25 +276,7 @@ private ProgressBar loadingQuestions;
 
     private void showNextQuestion(@NonNull LayoutInflater inflater, Question question) {
         questionId = question.getId();
-        questionsLayout.removeAllViews();
-        View questionView = inflater.inflate(R.layout.daily_questions_layout, questionsLayout);
-        TextView title = questionView.findViewById(R.id.question_title);
-        Button one = questionView.findViewById(R.id.answer1);
-        Button two = questionView.findViewById(R.id.answer2);
-        Button three = questionView.findViewById(R.id.answer3);
-        Button four = questionView.findViewById(R.id.answer4);
-
-        one.setOnClickListener(buttonTap);
-        two.setOnClickListener(buttonTap);
-        three.setOnClickListener(buttonTap);
-        four.setOnClickListener(buttonTap);
-
-        title.setText(question.getText());
-        one.setText(question.getOptions().get(0));
-        two.setText(question.getOptions().get(1));
-        three.setText(question.getOptions().get(2));
-        if (question.getOptions().size() > 3)
-            four.setText(question.getOptions().get(3));
+//        questionsLayout.removeAllViews();
 
     }
 
@@ -313,34 +320,56 @@ private ProgressBar loadingQuestions;
 
     @Override
     public void beginQuestionFetch() {
-        loadingQuestions.setVisibility(View.VISIBLE);
+//        loadingQuestions.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onFetchQuestion(Question question) {
-        loadingQuestions.setVisibility(View.GONE);
-        YoYo.with(Techniques.SlideInLeft)
-                .duration(700)
-                .playOn(questionsLayout);
-        showNextQuestion(genInflater, question);
+//        loadingQuestions.setVisibility(View.GONE);
+        questionId = question.getId();
+        removeLoadingView();
+        QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
+        questionAnswerChat.setText(question.getText());
+        questionAnswerChat.setType(QuestionAnswerChat.QUESTION_TYPE);
 
-//        showNextQuestion(genInflater, question);
+        questionAnswerChatList.add(questionAnswerChat);
+        questionsAdapter.notifyDataSetChanged();
+
+        questionsRecyclerView.scrollToPosition(questionAnswerChatList.size() - 1);
+
+        options.clear();
+        optionsAdapter.notifyDataSetChanged();
+
+        for(String option : question.getOptions()){
+            options.add(new AnswerState(option, 0));
+        }
+        optionsAdapter.notifyDataSetChanged();
+
 
     }
 
     @Override
     public void noMoreQuestions(String msg) {
-        questionsLayout.removeAllViews();
-        View view  = genInflater.inflate(R.layout.no_more_questions, questionsLayout);
+        removeLoadingView();
+        questionAnswerChatList.add(new QuestionAnswerChat("No more questions for now ^_^...", "", QuestionAnswerChat.QUESTION_TYPE));
+        answersRecyclerView.setVisibility(View.GONE);
 
-        loadingQuestions.setVisibility(View.GONE);
-        YoYo.with(Techniques.SlideInLeft)
-                .duration(700)
-                .playOn(questionsLayout);
+    }
 
-        noMoreQuestions = view.findViewById(R.id.no_more_questions_tv) ;
-        noMoreQuestions.setText(msg);
+    @Override
+    public void onAnswerSelected(int position, String answer) {
+        for (int i = 0; i < options.size(); i++) {
+            if (i != position){
+                options.get(i).setChosen(2);
+            } else options.get(i).setChosen(1);
+        }
+        questionAnswerChatList.add(new QuestionAnswerChat(options.get(position).getAnswerText(), "", QuestionAnswerChat.ANSWER_TYPE));
+        optionsAdapter.notifyDataSetChanged();
+        addLoadingView();
+        questionsRecyclerView.scrollToPosition(questionAnswerChatList.size() - 1);
 
+
+        sendAnswer(answer);
     }
 
     @Override
@@ -356,5 +385,17 @@ private ProgressBar loadingQuestions;
     @Override
     public void toastError(String msg) {
 
+    }
+
+    private void removeLoadingView(){
+        if (questionAnswerChatList.get(questionAnswerChatList.size() - 1).getType() == QuestionAnswerChat.LOADING_TYPE){
+            questionAnswerChatList.remove(questionAnswerChatList.size() - 1);
+            questionsAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void addLoadingView(){
+        questionAnswerChatList.add(new QuestionAnswerChat(QuestionAnswerChat.LOADING_TYPE));
+        questionsAdapter.notifyDataSetChanged();
     }
 }

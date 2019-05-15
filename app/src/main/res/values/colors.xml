@@ -13,6 +13,7 @@
     <color name="figmaBlueLight">#77AADD</color>
     <color name="figmaGrey">#FBFBFB</color>
     <color name="figmaDarkGrey">#FBFBFB</color>
+    <color name="black">#000</color>
     <color name="gray">#D3D3D3</color>
     <color name="tempColor">#F25B1C</color>
     <color name="tempImageBg">#D1BFB7</color>
