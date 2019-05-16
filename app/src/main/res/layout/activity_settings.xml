@@ -52,6 +52,7 @@
                     android:text="Settings"
                     android:textColor="@color/figmaBlue"
                     android:textSize="20sp"
+                    android:fontFamily="@font/poppins_light"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/back"
@@ -96,6 +97,7 @@
                 android:text="Account Settings"
                 android:textColor="@android:color/black"
                 android:textSize="24sp"
+                android:fontFamily="@font/poppins_light"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.112"
@@ -207,14 +209,16 @@
                             android:layout_height="wrap_content"
                             android:text="@string/language"
                             android:textColor="@android:color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_light"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/change_preferred_language"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_light" />
                     </LinearLayout>
 
                     <ImageView
@@ -288,14 +292,16 @@
                             android:layout_height="wrap_content"
                             android:text="@string/units"
                             android:textColor="@android:color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_light"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/choose_unit_of_measurement"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_light"/>
                     </LinearLayout>
 
                     <ImageView
@@ -447,14 +453,16 @@
                             android:layout_height="wrap_content"
                             android:text="Feedback"
                             android:textColor="@android:color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_light"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Send feedback to our developers"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_light"/>
                     </LinearLayout>
 
                     <ImageView
@@ -483,6 +491,7 @@
                         android:layout_gravity="start|top"
                         android:maxLines="10"
                         android:minLines="6"
+                        android:fontFamily="@font/poppins_light"
                         android:scrollbars="vertical"/>
 
                     <Button
@@ -521,14 +530,16 @@
                             android:layout_height="wrap_content"
                             android:text="About Us"
                             android:textColor="@android:color/black"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_light"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="See information on Apoe-4"
                             android:textColor="@android:color/black"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:fontFamily="@font/poppins_light"/>
                     </LinearLayout>
 
                     <ImageView
@@ -580,6 +591,7 @@
                 android:paddingEnd="32dp"
                 android:text="Delete Account"
                 android:textColor="@color/white"
+                android:fontFamily="@font/poppins_light"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout4"

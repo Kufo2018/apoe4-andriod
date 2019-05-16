@@ -166,6 +166,7 @@
         android:text="Exercise"
         android:textColor="@color/white"
         android:textSize="15sp"
+        android:fontFamily="@font/poppins_light"
         app:layout_constraintEnd_toEndOf="@id/temp"
         app:layout_constraintStart_toStartOf="@+id/temp"
         app:layout_constraintTop_toBottomOf="@+id/temp" />
@@ -178,6 +179,7 @@
         android:text="Score"
         android:textColor="@color/white"
         android:textSize="15sp"
+        android:fontFamily="@font/poppins_light"
         app:layout_constraintEnd_toEndOf="@id/steps"
         app:layout_constraintStart_toStartOf="@+id/steps"
         app:layout_constraintTop_toBottomOf="@+id/steps" />
@@ -189,6 +191,7 @@
         android:text="Sleep"
         android:textColor="@color/white"
         android:textSize="15sp"
+        android:fontFamily="@font/poppins_light"
         app:layout_constraintEnd_toEndOf="@+id/sleep"
         app:layout_constraintStart_toStartOf="@+id/sleep"
         app:layout_constraintTop_toBottomOf="@+id/sleep" />

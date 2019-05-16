@@ -14,11 +14,12 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:contentDescription="@string/logo"
             android:id="@+id/imageView2"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="28dp"
+            android:contentDescription="@string/logo"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_app_icon" />
@@ -28,12 +29,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/poppins_light"
             android:text="@string/register_sign_in"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/login_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.031"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             tools:fontFamily="@font/poppins" />
 
@@ -47,6 +52,7 @@
             android:background="@drawable/text_bg"
             android:ems="10"
             android:hint="@string/register_email"
+            android:fontFamily="@font/poppins_light"
             android:inputType="textEmailAddress"
             android:padding="8dp"
             android:textSize="16sp"
@@ -111,6 +117,7 @@
             android:text="@string/forgot_password"
             android:textColor="#CC3333"
             android:textSize="16sp"
+            android:fontFamily="@font/poppins_light"
             app:layout_constraintBottom_toBottomOf="@+id/rememberMe"
             app:layout_constraintEnd_toEndOf="@+id/login_password"
             app:layout_constraintTop_toTopOf="@+id/rememberMe"
@@ -127,6 +134,7 @@
             android:background="@drawable/button_blue_bg"
             android:onClick="login"
             android:text="@string/register_sign_in"
+            android:fontFamily="@font/poppins_light"
             android:textAllCaps="false"
             android:textColor="#fff"
             android:textSize="20sp"
@@ -210,7 +218,8 @@
                 android:gravity="end"
                 android:text="@string/don_t_have_an_account"
                 android:textColor="#000"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_light"/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -220,7 +229,8 @@
                 android:layout_weight="1"
                 android:text="@string/sign_up"
                 android:textColor="@color/figmaBlue"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_light"/>
         </LinearLayout>
 
         <TextView
@@ -234,6 +244,7 @@
             android:text="@string/or"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:fontFamily="@font/poppins_light"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

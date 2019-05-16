@@ -69,6 +69,7 @@
                             android:layout_marginLeft="1dp"
                             android:layout_weight="1"
                             android:textSize="18sp"
+                            android:fontFamily="@font/poppins_light"
                             android:gravity="start"
                             android:textColor="@color/gray"
                             />
@@ -86,6 +87,7 @@
                         android:layout_marginTop="8dp"
                         android:text="John Doe"
                         android:textColor="@color/white"
+                        android:fontFamily="@font/poppins_light"
                         android:textSize="17sp"
                         />
 
@@ -122,6 +124,7 @@
                                android:layout_height="wrap_content"
                                android:layout_marginStart="5dp"
                                android:textSize="17sp"
+                               android:fontFamily="@font/poppins_light"
                                android:text="Height"
                                android:textColor="@color/gray"
                                />
@@ -132,6 +135,7 @@
                                android:layout_weight="1"
                                android:gravity="center"
                                android:textSize="17sp"
+                               android:fontFamily="@font/poppins_light"
                                android:layout_height="wrap_content"
                                android:layout_marginEnd="5dp"
                                android:text="Weight"
@@ -158,6 +162,7 @@
                                android:layout_height="wrap_content"
                                android:text="185 cm"
                                android:textSize="18sp"
+                               android:fontFamily="@font/poppins_light"
                                app:layout_constraintEnd_toEndOf="@+id/textView14"
                                app:layout_constraintStart_toStartOf="@+id/textView14"
                                app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -169,6 +174,7 @@
                                android:textColor="@color/gray"
                                android:gravity="center"
                                android:textSize="18sp"
+                               android:fontFamily="@font/poppins_light"
                                android:layout_height="wrap_content"
                                android:text="145 kg"
                                app:layout_constraintEnd_toEndOf="@+id/textView17"
@@ -352,6 +358,7 @@
                     android:layout_toEndOf="@+id/iv_deduction_draaweer"
                     android:text="Settings"
                     android:textSize="14sp"
+                    android:fontFamily="@font/poppins_light"
                     android:textStyle="bold" />
             </RelativeLayout>
 
@@ -407,6 +414,7 @@
                     android:layout_toEndOf="@+id/sign_out"
                     android:text="SignOut"
                     android:textSize="14sp"
+                    android:fontFamily="@font/poppins_light"
                     android:textStyle="bold" />
             </RelativeLayout>
 
