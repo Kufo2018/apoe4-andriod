@@ -27,6 +27,7 @@
         android:layout_marginBottom="8dp"
         android:text="No questions to show... ^_^"
         android:gravity="center"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -8,13 +8,14 @@
         android:id="@+id/answer_option"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/poppins_light"
         android:gravity="center"
         android:layout_margin="8dp"
         android:textAllCaps="false"
         android:text="Good"
         android:background="@drawable/button_bg"
-        android:textColor=" #C4C4C4"
-        android:textSize="20sp" />
+        android:textColor=" #000"
+        android:textSize="20sp"
+        />
 
 </LinearLayout>
