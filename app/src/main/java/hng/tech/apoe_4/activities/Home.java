@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.Task;
 //import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.pixplicity.easyprefs.library.Prefs;
 
 
@@ -137,6 +138,11 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, Prefs.getString("id", "noId"));
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, Prefs.getString("fullname", "noName"));
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, Prefs.getString("url", "noImage"));
+        MainApplication.getFirebaseAnalytics().logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
         locations = new SimpleLocation(this);
         ButterKnife.bind(this);
 

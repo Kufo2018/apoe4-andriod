@@ -199,6 +199,7 @@ public class LoginActivity extends AppCompatActivity {
             Prefs.putString("url", image_url);
             Log.d("googleLogin", firstname);
             Prefs.putString("email", email);
+            Prefs.putString("id", id);
             Prefs.putBoolean("google_login", true);
 
             //register after one second
