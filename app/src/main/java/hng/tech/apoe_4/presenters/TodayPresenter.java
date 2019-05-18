@@ -7,6 +7,7 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.retrofit.responses.AnswerResponse;
 import hng.tech.apoe_4.retrofit.responses.QuestionServed;
@@ -29,7 +30,7 @@ public class TodayPresenter {
     public void fetchQuestion(){
         todayView.beginQuestionFetch();
         MainApplication.getApiInterface().getQuestion(Prefs.getString("accessToken", ""),
-                CONSTANTS.getTimeOfDay()).enqueue(new Callback<QuestionServed>() {
+                CONSTANTS.getTimeOfDay(), "Daily").enqueue(new Callback<QuestionServed>() {
             @Override
             public void onResponse(Call<QuestionServed> call, Response<QuestionServed> response) {
                 Log.e("Status", String.valueOf(response.code()));
@@ -49,6 +50,9 @@ public class TodayPresenter {
                     }
                 } else if (response.code() == 300){
                     todayView.noMoreQuestions("Seems You have answered all questions for now... ^_^");
+                } else {
+                    todayView.noMoreQuestions("An error occurred...");
+                    Toasty.error(context, response.message()).show();
                 }
             }
 
@@ -59,6 +63,8 @@ public class TodayPresenter {
 //                        .alpha(1.0f).setListener(null);
 ////                QuestionServed questionServed = response.body();
                 todayView.questionFetchFailed();
+                todayView.noMoreQuestions("An error occurred...");
+                Toasty.error(context, t.getMessage()).show();
             }
         });
     }

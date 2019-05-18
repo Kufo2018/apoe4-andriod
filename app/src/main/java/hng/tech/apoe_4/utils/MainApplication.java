@@ -2,6 +2,7 @@ package hng.tech.apoe_4.utils;
 
 import android.content.ContextWrapper;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -9,6 +10,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.util.concurrent.TimeUnit;
 
 import androidx.multidex.MultiDexApplication;
+
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -19,8 +21,10 @@ public class MainApplication extends MultiDexApplication {
 
     private static MainApplication instance;
     private static ApiInterface apiInterface;
+    private static FirebaseAnalytics mFirebaseAnalytics;
 
-    public static String BASE_URL = "https://api.apoe4.app/api/v1/";
+
+    public static String BASE_URL = "https://hng5-whisper.herokuapp.com/api/v1/";
 
 
     Gson gson = new GsonBuilder()
@@ -37,11 +41,18 @@ public class MainApplication extends MultiDexApplication {
     }
 
 
+    public static FirebaseAnalytics getFirebaseAnalytics() {
+        if (mFirebaseAnalytics == null)
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(MainApplication.getInstance());
+        return mFirebaseAnalytics;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 
