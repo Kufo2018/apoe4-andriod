@@ -45,11 +45,11 @@ public interface ApiInterface {
 
     @POST("questions/getQuestion")
     @FormUrlEncoded
-    Call<QuestionServed> getQuestion(@Header ("Authorization") String header,@Field("type") String type);
+    Call<QuestionServed> getQuestion(@Header ("Authorization") String header,@Field("type") String type, @Field("category") String category);
 
-    @POST("answers")
+    @POST("answers/{questionId}")
     @FormUrlEncoded
-    Call<AnswerResponse> sendAnswer(@Header ("Authorization") String header, @Field("question") String questionId, @Field("text") String answerSelected);
+    Call<AnswerResponse> sendAnswer(@Header ("Authorization") String header, @Path("questionId") String questionId, @Field("text") String answerSelected);
 
     @GET("notiget.php")
     Call<List<Notif>>notifications();
