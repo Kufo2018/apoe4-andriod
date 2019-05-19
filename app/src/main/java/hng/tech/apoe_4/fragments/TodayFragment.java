@@ -71,8 +71,6 @@ public class TodayFragment extends Fragment implements TodayView {
 //    @BindView(R.id.questions_view)
 //    LinearLayout questionsLayout;
 
-//    @BindView(R.id.loadingQuestions)
-private ProgressBar loadingQuestions;
     private TextView noMoreQuestions;
 //    @BindView(R.id.loading)
 //    ProgressBar progressBar;
@@ -374,7 +372,7 @@ private ProgressBar loadingQuestions;
 
     @Override
     public void questionFetchFailed() {
-        loadingQuestions.setVisibility(View.GONE);
+
     }
 
     @Override
