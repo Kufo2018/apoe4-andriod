@@ -24,7 +24,7 @@ public class CONSTANTS {
             return "Night";
         } else {
             Log.e("Date", "MidNight");
-            return "Midnight";
+            return "Night";
         }
     }
 }
