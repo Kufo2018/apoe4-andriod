@@ -377,12 +377,12 @@ public class TodayFragment extends Fragment implements TodayView {
 
     @Override
     public void toastSuccess(String msg) {
-
+        CONSTANTS.toastSuccess(getContext(), msg);
     }
 
     @Override
     public void toastError(String msg) {
-
+        CONSTANTS.toastError(getContext(), msg);
     }
 
     private void removeLoadingView(){
