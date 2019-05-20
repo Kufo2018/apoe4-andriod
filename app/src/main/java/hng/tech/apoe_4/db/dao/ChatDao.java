@@ -1,4 +1,4 @@
-package hng.tech.apoe_4.daos;
+package hng.tech.apoe_4.db.dao;
 
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
