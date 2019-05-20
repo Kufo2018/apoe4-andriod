@@ -49,6 +49,7 @@ public class TodayPresenter {
 
                         QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
                         questionAnswerChat.setText(questionServed.getQuestion().getText());
+                        questionAnswerChat.setTime(CONSTANTS.getCurrentDate());
                         questionAnswerChat.setType(QuestionAnswerChat.QUESTION_TYPE);
 
                         addDataToRoom(questionAnswerChat);
@@ -88,6 +89,7 @@ public class TodayPresenter {
 
                 QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
                 questionAnswerChat.setText(answerResponse.getAnswer().getText());
+                questionAnswerChat.setTime(CONSTANTS.getCurrentDate());
                 questionAnswerChat.setType(QuestionAnswerChat.QUESTION_TYPE);
 
                 addDataToRoom(questionAnswerChat);
