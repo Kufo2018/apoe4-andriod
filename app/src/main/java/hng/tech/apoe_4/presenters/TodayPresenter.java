@@ -86,6 +86,11 @@ public class TodayPresenter {
                 assert  response.body() != null;
                 AnswerResponse answerResponse = response.body();
 
+                QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
+                questionAnswerChat.setText(answerResponse.);
+                questionAnswerChat.setType(QuestionAnswerChat.QUESTION_TYPE);
+
+                addDataToRoom(questionAnswerChat);
 
                 String questionType = CONSTANTS.getTimeOfDay();
 //                getQuestion(questionType);

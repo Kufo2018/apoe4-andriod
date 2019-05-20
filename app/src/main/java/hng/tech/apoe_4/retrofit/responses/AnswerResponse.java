@@ -6,25 +6,36 @@ import com.google.gson.annotations.SerializedName;
 
 public class AnswerResponse {
 
-    @SerializedName("status")
+    @SerializedName("Answer")
     @Expose
-    private String status;
+    private Answer answer;
+    @SerializedName("categoryData")
+    @Expose
+    private CategoryData categoryData;
     @SerializedName("message")
     @Expose
     private String message;
+    @SerializedName("status")
+    @Expose
+    private String status;
     @SerializedName("code")
     @Expose
     private Integer code;
-    @SerializedName("data")
-    @Expose
-    private Data data;
 
-    public String getStatus() {
-        return status;
+    public Answer getAnswer() {
+        return answer;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+
+    public CategoryData getCategoryData() {
+        return categoryData;
+    }
+
+    public void setCategoryData(CategoryData categoryData) {
+        this.categoryData = categoryData;
     }
 
     public String getMessage() {
@@ -35,6 +46,14 @@ public class AnswerResponse {
         this.message = message;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Integer getCode() {
         return code;
     }
@@ -43,16 +62,11 @@ public class AnswerResponse {
         this.code = code;
     }
 
-    public Data getData() {
-        return data;
-    }
+    class Answer {
 
-    public void setData(Data data) {
-        this.data = data;
-    }
-
-    class Data {
-
+        @SerializedName("text")
+        @Expose
+        private String text;
         @SerializedName("created")
         @Expose
         private String created;
@@ -62,15 +76,20 @@ public class AnswerResponse {
         @SerializedName("question")
         @Expose
         private String question;
-        @SerializedName("text")
-        @Expose
-        private String text;
         @SerializedName("owner")
         @Expose
         private String owner;
         @SerializedName("__v")
         @Expose
         private Integer v;
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
 
         public String getCreated() {
             return created;
@@ -96,14 +115,6 @@ public class AnswerResponse {
             this.question = question;
         }
 
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
-
         public String getOwner() {
             return owner;
         }
@@ -118,6 +129,44 @@ public class AnswerResponse {
 
         public void setV(Integer v) {
             this.v = v;
+        }
+
+    }
+
+    class CategoryData {
+
+        @SerializedName("name")
+        @Expose
+        private String name;
+        @SerializedName("score")
+        @Expose
+        private Integer score;
+        @SerializedName("total")
+        @Expose
+        private Integer total;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Integer getScore() {
+            return score;
+        }
+
+        public void setScore(Integer score) {
+            this.score = score;
+        }
+
+        public Integer getTotal() {
+            return total;
+        }
+
+        public void setTotal(Integer total) {
+            this.total = total;
         }
 
     }
