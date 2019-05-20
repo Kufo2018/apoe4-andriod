@@ -45,6 +45,9 @@ dependencies {
 
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.0'
 
+    //Library for database debugging and manipulation
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.5'
+
     //Room dependencies
     implementation "android.arch.persistence.room:runtime:1.1.1"
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
