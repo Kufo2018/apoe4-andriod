@@ -87,11 +87,10 @@ public class TodayPresenter {
                 AnswerResponse answerResponse = response.body();
 
                 QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
-                questionAnswerChat.setText(answerResponse.);
+                questionAnswerChat.setText(answerResponse.getAnswer().getText());
                 questionAnswerChat.setType(QuestionAnswerChat.QUESTION_TYPE);
 
                 addDataToRoom(questionAnswerChat);
-
                 String questionType = CONSTANTS.getTimeOfDay();
 //                getQuestion(questionType);
                 fetchQuestion();
