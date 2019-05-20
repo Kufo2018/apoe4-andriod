@@ -1,6 +1,7 @@
 package hng.tech.apoe_4.models;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -11,6 +12,14 @@ public class QuestionAnswerChat {
     private String text, time;
     private int type;
 
+    public int getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
+    }
+
     @PrimaryKey(autoGenerate = true)
     private int chatId;
 
@@ -20,9 +29,11 @@ public class QuestionAnswerChat {
         this.type = type;
     }
 
+    @Ignore
     public QuestionAnswerChat() {
     }
 
+    @Ignore
     public QuestionAnswerChat(int type) {
         this.type = type;
     }

@@ -13,7 +13,7 @@ public class ChatRepository {
 
     public ChatRepository(Application application) {
         ApoeDatabase database = ApoeDatabase.getInstance();
-        chatDao = database.chatDao;
+        chatDao = database.chatDao();
     }
 
     private static class InsertChatAsyncClass extends AsyncTask<QuestionAnswerChat, Void, Void>{

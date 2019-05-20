@@ -11,7 +11,7 @@ import hng.tech.apoe_4.utils.MainApplication;
 
 @Database(entities = {QuestionAnswerChat.class}, version = 1)
 public abstract class ApoeDatabase extends RoomDatabase {
-    public ChatDao chatDao;
+    public abstract ChatDao chatDao();
     private static volatile ApoeDatabase INSTANCE;
 
     public static ApoeDatabase getInstance(){
