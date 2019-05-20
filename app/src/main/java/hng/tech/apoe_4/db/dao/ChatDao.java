@@ -18,6 +18,6 @@ public interface ChatDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertMultipleElements(List<QuestionAnswerChat> questionAnswerChats);
 
-    @Query("SELECT * FROM QuestionAnswerChat WHERE time = :currentDay")
-    void getChatForCurrentDay(String currentDay);
+    @Query("SELECT * FROM QuestionAnswerChat WHERE time = :currentDay ORDER BY chatId ASC")
+    List<QuestionAnswerChat> getChatForCurrentDay(String currentDay);
 }
