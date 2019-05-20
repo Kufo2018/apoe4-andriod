@@ -180,6 +180,8 @@ public class TodayFragment extends Fragment implements TodayView {
 
         todayPresenter = new TodayPresenter(getContext(), this);
 
+        todayPresenter.getPreviousChat();
+
 
 //        questionsLayout.removeAllViews();
 //        View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
@@ -376,6 +378,22 @@ public class TodayFragment extends Fragment implements TodayView {
     }
 
     @Override
+    public void chatFetched(List<QuestionAnswerChat> questionAnswerChats) {
+        questionAnswerChatList.clear();
+        questionsAdapter.notifyDataSetChanged();
+        questionAnswerChatList.addAll(questionAnswerChats);
+        questionsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        questionAnswerChatList.clear();
+        questionsAdapter.notifyDataSetChanged();
+        todayPresenter.getPreviousChat();
+    }
+
+    @Override
     public void toastSuccess(String msg) {
         CONSTANTS.toastSuccess(getContext(), msg);
     }
@@ -386,7 +404,8 @@ public class TodayFragment extends Fragment implements TodayView {
     }
 
     private void removeLoadingView(){
-        if (questionAnswerChatList.get(questionAnswerChatList.size() - 1).getType() == QuestionAnswerChat.LOADING_TYPE){
+        if ( questionAnswerChatList.size() > 0 &&
+                questionAnswerChatList.get(questionAnswerChatList.size() - 1).getType() == QuestionAnswerChat.LOADING_TYPE){
             questionAnswerChatList.remove(questionAnswerChatList.size() - 1);
             questionsAdapter.notifyDataSetChanged();
         }

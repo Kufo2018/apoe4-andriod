@@ -4,9 +4,12 @@ import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.List;
+
 import hng.tech.apoe_4.db.ApoeDatabase;
 import hng.tech.apoe_4.db.dao.ChatDao;
 import hng.tech.apoe_4.models.QuestionAnswerChat;
+import hng.tech.apoe_4.views.TodayView;
 
 public class ChatRepository {
     private ChatDao chatDao;
@@ -16,7 +19,7 @@ public class ChatRepository {
         chatDao = database.chatDao();
     }
 
-    private static class InsertChatAsyncClass extends AsyncTask<QuestionAnswerChat, Void, Void>{
+    private static class InsertChatAsyncClass extends AsyncTask<List<QuestionAnswerChat>, Void, Void>{
 
         private ChatDao chatDao;
 
@@ -25,8 +28,8 @@ public class ChatRepository {
         }
 
         @Override
-        protected Void doInBackground(QuestionAnswerChat... questionAnswerChats) {
-            chatDao.insertSingleElement(questionAnswerChats[0]);
+        protected Void doInBackground(List<QuestionAnswerChat>... questionAnswerChats) {
+            chatDao.insertMultipleElements(questionAnswerChats[0]);
             return null;
         }
 
@@ -36,7 +39,35 @@ public class ChatRepository {
         }
     }
 
-    public void insertChatElement(QuestionAnswerChat questionAnswerChat){
+    private static class ObtainChatAsyncClass extends AsyncTask<String, Void, List<QuestionAnswerChat>> {
+
+        private ChatDao chatDao;
+        TodayView todayView;
+
+        public ObtainChatAsyncClass(ChatDao chatDao, TodayView todayView) {
+            this.chatDao = chatDao;
+            this.todayView = todayView;
+        }
+
+
+        @Override
+        protected List<QuestionAnswerChat> doInBackground(String... dates) {
+            return chatDao.getChatForCurrentDay(dates[0]);
+        }
+
+        @Override
+        protected void onPostExecute(List<QuestionAnswerChat> questionAnswerChats) {
+            super.onPostExecute(questionAnswerChats);
+            todayView.chatFetched(questionAnswerChats);
+        }
+    }
+
+
+    public void insertChatElement(List<QuestionAnswerChat> questionAnswerChat){
         new InsertChatAsyncClass(chatDao).execute(questionAnswerChat);
+    }
+
+    public void getChat(String date, TodayView todayView){
+        new ObtainChatAsyncClass(chatDao, todayView).execute(date);
     }
 }
