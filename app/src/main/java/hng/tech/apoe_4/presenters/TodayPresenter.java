@@ -9,6 +9,8 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.db.repositories.ChatRepository;
+import hng.tech.apoe_4.models.QuestionAnswerChat;
 import hng.tech.apoe_4.retrofit.responses.AnswerResponse;
 import hng.tech.apoe_4.retrofit.responses.QuestionServed;
 import hng.tech.apoe_4.utils.CONSTANTS;
@@ -44,6 +46,13 @@ public class TodayPresenter {
                     QuestionServed questionServed = response.body();
                     if (questionServed.getStatus() == 0){
                         todayView.onFetchQuestion(questionServed.getQuestion());
+
+                        QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
+                        questionAnswerChat.setText(questionServed.getQuestion().getText());
+                        questionAnswerChat.setType(QuestionAnswerChat.QUESTION_TYPE);
+
+                        addDataToRoom(questionAnswerChat);
+
                     }
                     else if (questionServed.getStatus() == 1){
                         todayView.noMoreQuestions(questionServed.getMsg());
@@ -88,5 +97,9 @@ public class TodayPresenter {
 
             }
         });
+    }
+
+    private void addDataToRoom(QuestionAnswerChat questionAnswerChat){
+        new ChatRepository(MainApplication.getInstance()).insertChatElement(questionAnswerChat);
     }
 }
