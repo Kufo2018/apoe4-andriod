@@ -71,8 +71,6 @@ public class TodayFragment extends Fragment implements TodayView {
 //    @BindView(R.id.questions_view)
 //    LinearLayout questionsLayout;
 
-//    @BindView(R.id.loadingQuestions)
-private ProgressBar loadingQuestions;
     private TextView noMoreQuestions;
 //    @BindView(R.id.loading)
 //    ProgressBar progressBar;
@@ -181,6 +179,8 @@ private ProgressBar loadingQuestions;
 //        Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
 
         todayPresenter = new TodayPresenter(getContext(), this);
+
+        todayPresenter.getPreviousChat();
 
 
 //        questionsLayout.removeAllViews();
@@ -374,21 +374,38 @@ private ProgressBar loadingQuestions;
 
     @Override
     public void questionFetchFailed() {
-        loadingQuestions.setVisibility(View.GONE);
+
+    }
+
+    @Override
+    public void chatFetched(List<QuestionAnswerChat> questionAnswerChats) {
+        questionAnswerChatList.clear();
+        questionsAdapter.notifyDataSetChanged();
+        questionAnswerChatList.addAll(questionAnswerChats);
+        questionsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        questionAnswerChatList.clear();
+        questionsAdapter.notifyDataSetChanged();
+        todayPresenter.getPreviousChat();
     }
 
     @Override
     public void toastSuccess(String msg) {
-
+        CONSTANTS.toastSuccess(getContext(), msg);
     }
 
     @Override
     public void toastError(String msg) {
-
+        CONSTANTS.toastError(getContext(), msg);
     }
 
     private void removeLoadingView(){
-        if (questionAnswerChatList.get(questionAnswerChatList.size() - 1).getType() == QuestionAnswerChat.LOADING_TYPE){
+        if ( questionAnswerChatList.size() > 0 &&
+                questionAnswerChatList.get(questionAnswerChatList.size() - 1).getType() == QuestionAnswerChat.LOADING_TYPE){
             questionAnswerChatList.remove(questionAnswerChatList.size() - 1);
             questionsAdapter.notifyDataSetChanged();
         }

@@ -1,5 +1,10 @@
 package hng.tech.apoe_4.models;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class QuestionAnswerChat {
     public static final int QUESTION_TYPE = 0;
     public static final int ANSWER_TYPE = 1;
@@ -7,15 +12,28 @@ public class QuestionAnswerChat {
     private String text, time;
     private int type;
 
+    public int getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(int chatId) {
+        this.chatId = chatId;
+    }
+
+    @PrimaryKey(autoGenerate = true)
+    private int chatId;
+
     public QuestionAnswerChat(String text, String time, int type) {
         this.text = text;
         this.time = time;
         this.type = type;
     }
 
+    @Ignore
     public QuestionAnswerChat() {
     }
 
+    @Ignore
     public QuestionAnswerChat(int type) {
         this.type = type;
     }

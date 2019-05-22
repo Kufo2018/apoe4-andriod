@@ -7,8 +7,14 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.db.repositories.ChatRepository;
+import hng.tech.apoe_4.models.Question;
+import hng.tech.apoe_4.models.QuestionAnswerChat;
 import hng.tech.apoe_4.retrofit.responses.AnswerResponse;
 import hng.tech.apoe_4.retrofit.responses.QuestionServed;
 import hng.tech.apoe_4.utils.CONSTANTS;
@@ -21,6 +27,7 @@ import retrofit2.Response;
 public class TodayPresenter {
     private Context context;
     private TodayView todayView;
+    List<QuestionAnswerChat> converse = new ArrayList<>();
 
     public TodayPresenter(Context context, TodayView todayView) {
         this.context = context;
@@ -44,6 +51,15 @@ public class TodayPresenter {
                     QuestionServed questionServed = response.body();
                     if (questionServed.getStatus() == 0){
                         todayView.onFetchQuestion(questionServed.getQuestion());
+
+                        QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
+                        questionAnswerChat.setText(questionServed.getQuestion().getText());
+                        questionAnswerChat.setTime(CONSTANTS.getCurrentDate());
+                        questionAnswerChat.setType(QuestionAnswerChat.QUESTION_TYPE);
+
+                        converse.clear();
+                        converse.add(questionAnswerChat);
+
                     }
                     else if (questionServed.getStatus() == 1){
                         todayView.noMoreQuestions(questionServed.getMsg());
@@ -77,7 +93,13 @@ public class TodayPresenter {
                 assert  response.body() != null;
                 AnswerResponse answerResponse = response.body();
 
+                QuestionAnswerChat questionAnswerChat = new QuestionAnswerChat();
+                questionAnswerChat.setText(answerResponse.getAnswer().getText());
+                questionAnswerChat.setTime(CONSTANTS.getCurrentDate());
+                questionAnswerChat.setType(QuestionAnswerChat.ANSWER_TYPE);
 
+                converse.add(questionAnswerChat);
+                addDataToRoom(converse);
                 String questionType = CONSTANTS.getTimeOfDay();
 //                getQuestion(questionType);
                 fetchQuestion();
@@ -89,4 +111,13 @@ public class TodayPresenter {
             }
         });
     }
+
+    public void getPreviousChat(){
+        new ChatRepository(MainApplication.getInstance()).getChat(CONSTANTS.getCurrentDate(), todayView);
+    }
+
+    private void addDataToRoom(List<QuestionAnswerChat> questionAnswerChat){
+        new ChatRepository(MainApplication.getInstance()).insertChatElement(questionAnswerChat);
+    }
+
 }
